@@ -1,0 +1,11 @@
+.context-menu-section {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  
+  &:nth-of-type(n + 2) {
+    border-top: 1px solid gray(45);
+    margin-top: 5px;
+    padding-top: 5px;
+  }
+}

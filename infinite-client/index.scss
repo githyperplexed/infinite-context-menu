@@ -1,0 +1,29 @@
+@import "./scss/colors.scss";
+@import "./scss/animations.scss";
+
+@import "./components/app/app.scss";
+@import "./components/contextMenu/contextMenu.scss";
+@import "./components/contextMenuWindow/contextMenuWindow.scss";
+@import "./components/contextMenuSection/contextMenuSection.scss";
+@import "./components/contextMenuAction/contextMenuAction.scss";
+@import "./components/contextMenuExtension/contextMenuExtension.scss";
+@import "./components/infiniteContextMenuExtension/infiniteContextMenuExtension.scss";
+@import "./components/specialEffect/specialEffect.scss";
+@import "./components/sparkleEffect/sparkleEffect.scss";
+@import "./components/waveEffect/waveEffect.scss";
+@import "./components/windowEffect/windowEffect.scss";
+@import "./components/infiniteCanvas/infiniteCanvas.scss";
+
+html,
+body {
+  margin: 0px;
+  min-height: 100vh;
+  overflow: hidden;
+  padding: 0px;
+  width: 100%;
+}
+
+.rubik-font {
+  font-family: 'Rubik', sans-serif;
+  font-weight: 400;
+}

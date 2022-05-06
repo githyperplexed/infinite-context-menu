@@ -1,0 +1,17 @@
+#infinite-app {
+  background-color: gray(30);
+  height: 100vh;
+  width: 100vw;
+
+  > .window-effect {
+    height: 80vh;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 80vw;
+
+    i {
+      font-size: 1.25em;
+    }
+  }
+}

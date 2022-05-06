@@ -1,0 +1,5 @@
+@function gray($color) {
+  @return rgb($color, $color, $color);
+}
+
+$boxShadow: rgba(gray(10), 0.75) 0px 7px 29px 0px;

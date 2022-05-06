@@ -1,0 +1,28 @@
+@keyframes window-effect-animation {
+  from, to {
+    opacity: 0;
+    transform: scale(0.5) rotate(0deg);
+  }
+
+  50% {
+    opacity: 0.5;
+    transform: scale(1) rotate(135deg);
+  }
+}
+
+.window-effect {
+  height: 100%;
+  left: 0px;
+  pointer-events: none;
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  z-index: 2;
+
+  i {    
+    animation: window-effect-animation ease-in-out;
+    font-size: 0.8em;
+    opacity: 0;
+    position: absolute;
+  }
+}

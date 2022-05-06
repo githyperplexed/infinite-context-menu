@@ -1,0 +1,16 @@
+.context-menu-extension {
+  position: relative;
+
+  .context-menu-window {
+    position: absolute;
+  }
+
+  i.fa-solid.fa-caret-right {
+    color: gray(220);
+    pointer-events: none;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
