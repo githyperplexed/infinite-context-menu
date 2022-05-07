@@ -1,9 +1,13 @@
 {
   "scripts": {
-    "start": "webpack serve --mode development --env local"
+    "start": "webpack serve --mode development --env local",
+    "clean": "rm -rf public",
+    "build": "webpack --mode production --env production",
+    "deploy": "npm run clean && npm run build && firebase deploy --only hosting"
   },
   "dependencies": {
     "classnames": "^2.3.1",
+    "firebase": "^9.8.0",
     "react": "^18.1.0",
     "react-dom": "^18.1.0"
   },
