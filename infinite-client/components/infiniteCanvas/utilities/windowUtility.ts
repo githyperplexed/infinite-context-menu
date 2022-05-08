@@ -73,7 +73,13 @@ export const WindowUtility: IWindowUtility = {
 
     context.shadowOffsetY = 7;
 
-    context.drawImage(img, upperLeft.x, upperLeft.y, size.width, size.height);
+    if(w.destroyedAt) { 
+      context.fillStyle = `rgba(20, 20, 20, ${CanvasUtility.getAnimatedValue(100, 0, 100, w.destroyedAt) / 100})`;
+  
+      context.fillRect(upperLeft.x, upperLeft.y, size.width, size.height);
+    } else {
+      context.drawImage(img, upperLeft.x, upperLeft.y, size.width, size.height);
+    }
 
     if(WindowUtility.isClickInWindow(upperLeft, size, mouse)) {      
       const now: number = new Date().getTime();
