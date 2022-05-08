@@ -32,7 +32,6 @@ export const App: React.FC = () => {
         <>
           <WindowEffect level={9} duration={1000} />
           <InfiniteCanvas />
-          <ContextMenuWrapper targetRef={ref} sections={ContextMenuTestUtility.getMenuSections()} />
         </>
       )
     }

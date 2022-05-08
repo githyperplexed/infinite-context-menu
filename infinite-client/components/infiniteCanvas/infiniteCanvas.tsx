@@ -6,7 +6,6 @@ import { WindowUtility } from "./utilities/windowUtility";
 
 import { ICanvasContextMenuWindow } from "./models/canvasContextMenuWindow";
 import { ICoordinate } from "./models/coordinate";
-import { ISize } from "./models/size";
 
 export const InfiniteCanvas: React.FC = () => {
   const ref = React.useRef<HTMLCanvasElement>(null),
