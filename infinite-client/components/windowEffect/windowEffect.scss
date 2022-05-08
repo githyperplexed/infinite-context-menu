@@ -1,12 +1,12 @@
 @keyframes window-effect-animation {
   from, to {
     opacity: 0;
-    transform: scale(0.5) rotate(0deg);
+    transform: scale(0.5);
   }
 
   50% {
     opacity: 0.5;
-    transform: scale(1) rotate(135deg);
+    transform: scale(1);
   }
 }
 

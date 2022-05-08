@@ -15,7 +15,7 @@ export const WindowEffect: React.FC<IWindowEffectProps> = (props: IWindowEffectP
       return (
         <WindowEffectIcon 
           key={index} 
-          icon="fa-solid fa-star-sharp" 
+          icon={InfiniteContextMenuUtility.getEffectIcon(props.level)} 
           duration={props.duration} 
           index={index} 
           color={InfiniteContextMenuUtility.getEffectColor(props.level, index)} 

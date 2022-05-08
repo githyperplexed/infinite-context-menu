@@ -29,7 +29,7 @@ export const ContextMenuTestUtility: IContextMenuTestUtility = {
         ContextMenuUtility.mapAction("Dislike", "fa-solid fa-thumbs-down")
       ]),
       ContextMenuUtility.mapSection([
-        ContextMenuUtility.mapAction("Settings", "fa-solid fa-gear", null, settingsSections),
+        ContextMenuUtility.mapAction("Settings", "fa-solid fa-gear", null, null, settingsSections),
         ContextMenuUtility.mapAction("Delete", "fa-solid fa-trash")
       ]),
       ContextMenuUtility.mapSection([

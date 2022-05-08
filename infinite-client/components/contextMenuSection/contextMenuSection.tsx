@@ -30,6 +30,7 @@ export const ContextMenuSection: React.FC<IContextMenuProps> = (props: IContextM
         <ContextMenuAction 
           key={action.id} 
           id={action.id} 
+          className={action.className}
           label={action.label} 
           icon={action.icon} 
           sections={action.sections || []}

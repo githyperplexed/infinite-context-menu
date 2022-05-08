@@ -29,7 +29,7 @@ export const InfiniteContextMenuExtension: React.FC<IInfiniteContextMenuExtensio
         ...props.action,
         sections: [
           ContextMenuUtility.mapSection([
-            ContextMenuUtility.mapAction("DO NOT PRESS", "fa-solid fa-infinity", setModeToInfinite)
+            ContextMenuUtility.mapAction("DO NOT PRESS", "fa-solid fa-infinity", "do-not-press", setModeToInfinite)
           ])
         ]
       };

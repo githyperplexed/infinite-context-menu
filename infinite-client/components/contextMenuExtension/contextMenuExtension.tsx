@@ -20,7 +20,8 @@ interface IContextMenuExtensionProps {
 export const ContextMenuExtension: React.FC<IContextMenuExtensionProps> = (props: IContextMenuExtensionProps) => {    
   const { truncateDirectionHistoryAtEntry } = React.useContext(ContextMenuContext);
 
-  const [active, setActiveTo] = React.useState<boolean>(false);
+  const [active, setActiveTo] = React.useState<boolean>(false),
+    [deactivate, setDeactivateTo] = React.useState<boolean>(false);
 
   const ref = React.useRef<HTMLDivElement>(null);
 
@@ -30,8 +31,23 @@ export const ContextMenuExtension: React.FC<IContextMenuExtensionProps> = (props
     }
   }, [active]);
 
-  const handleOnMouseOver = (): void => setActiveTo(true),
-        handleOnMouseOut = (): void => setActiveTo(false);  
+  React.useEffect(() => {
+    if(deactivate) {
+      const timeout: NodeJS.Timeout = setTimeout(() => {
+        setActiveTo(false);
+        setDeactivateTo(false);
+      }, 1000);
+
+      return () => clearTimeout(timeout);
+    }
+  }, [deactivate]);
+
+  const handleOnMouseOver = (): void => {
+    setActiveTo(true);
+    setDeactivateTo(false);
+  }
+    
+  const handleOnMouseOut = (): void => setDeactivateTo(true);
 
   const getWindow = (): JSX.Element => {
     if(active) {
@@ -58,6 +74,7 @@ export const ContextMenuExtension: React.FC<IContextMenuExtensionProps> = (props
     <div ref={ref} className="context-menu-extension" onMouseEnter={handleOnMouseOver} onMouseLeave={handleOnMouseOut}>
       <ContextMenuAction 
         id={props.action.id} 
+        className={props.action.className}
         label={ContextMenuUtility.getActionDisplayLabel(props.action.label, props.level)} 
         icon={props.action.icon}
         effect={getSpecialEffect()}

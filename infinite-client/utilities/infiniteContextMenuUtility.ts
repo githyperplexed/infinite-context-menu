@@ -114,6 +114,7 @@ export const InfiniteContextMenuUtility: IInfiniteContextMenuUtility = {
         return Color.Orange;
       case 13:
       case 14:
+      case 15:
         return Color.Red;
       default:
         return Color.Blue;
@@ -142,6 +143,7 @@ export const InfiniteContextMenuUtility: IInfiniteContextMenuUtility = {
       case 13:
         return "fa-solid fa-siren-on";
       case 14:
+      case 15:
         return "fa-solid fa-skull-crossbones";
       default:
         return "fa-solid fa-user";

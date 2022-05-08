@@ -15,7 +15,7 @@ interface IContextMenuUtility {
   getActionDisplayLabel: (label: string, level: number) => string;
   getDirectionEntry: (action: IContextMenuAction, directionHistory: IDirectionEntry[]) => IDirectionEntry;  
   getPositionFromDirectionEntry: (action: IContextMenuAction, directionHistory: IDirectionEntry[]) => IPosition;  
-  mapAction: (label: string, icon: string, onClick?: () => void, sections?: IContextMenuSection[]) => IContextMenuAction;  
+  mapAction: (label: string, icon: string, className?: string, onClick?: () => void, sections?: IContextMenuSection[]) => IContextMenuAction;  
   mapSection: (actions: IContextMenuAction[]) => IContextMenuSection;
   shouldActivate: (ref: React.MutableRefObject<HTMLElement>, e: any) => boolean;
   shouldDectivate: (ref: React.MutableRefObject<HTMLElement>, e: any) => boolean;  
@@ -83,11 +83,15 @@ export const ContextMenuUtility: IContextMenuUtility = {
 
     return ContextMenuUtility.determinePositionFromDirection(entry);
   },
-  mapAction: (label: string, icon: string, onClick?: () => void, sections?: IContextMenuSection[]): IContextMenuAction => {
+  mapAction: (label: string, icon: string, className?: string, onClick?: () => void, sections?: IContextMenuSection[]): IContextMenuAction => {
     const action: IContextMenuAction = {
       id: Math.random().toString(),
       label,
       icon
+    }
+
+    if(className) {
+      action.className = className;
     }
 
     if(onClick) {

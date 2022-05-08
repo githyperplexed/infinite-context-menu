@@ -1,7 +1,13 @@
-.infinite-context-menu-extension {
-  position: absolute;
-
-  .context-menu-window {
-    position: relative;
+@keyframes do-not-press {
+  from, to {
+    background-color: transparent;
   }
+
+  50% {    
+    background-color: rgba($red, 0.15);
+  }
+}
+
+.do-not-press {
+  animation: do-not-press 3s ease-in-out infinite;
 }
