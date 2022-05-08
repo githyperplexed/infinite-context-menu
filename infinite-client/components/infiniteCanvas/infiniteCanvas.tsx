@@ -9,7 +9,8 @@ import { ICoordinate } from "./models/coordinate";
 import { ISize } from "./models/size";
 
 export const InfiniteCanvas: React.FC = () => {
-  const ref = React.useRef<HTMLCanvasElement>(null);
+  const ref = React.useRef<HTMLCanvasElement>(null),
+    imageRef = React.useRef<HTMLImageElement>(null);
 
   React.useEffect(() => {
     if(ref.current) {
@@ -25,44 +26,24 @@ export const InfiniteCanvas: React.FC = () => {
         y: context.canvas.height / 2
       }
 
-      const size: ISize = {
-        height: 282,
-        width: 320,
-        radius: 10
-      }
+      let windows: ICanvasContextMenuWindow[] = [WindowUtility.create(context)];
+
+      const generate = (): void => {
+        setTimeout(() => {
+          if(windows.length < 100) {
+            windows.push(WindowUtility.create(context));
+          }
   
-      const speed: ICoordinate = {
-        x: 1.5,
-        y: 1.5
+          window.requestAnimationFrame(generate); 
+        }, 600);
       }
-
-      const origin: ICoordinate = {
-        x: context.canvas.width / 2, 
-        y: size.height * -1
-      }
-
-      const getAWindow = (): ICanvasContextMenuWindow => ({
-        id: Math.random().toString(),
-        coordinate: { ...origin },
-        speed: { ...speed },
-        size: { ...size },
-        destroyedAt: null
-      })
-
-      let windows: ICanvasContextMenuWindow[] = [getAWindow()];
-
-      const interval: NodeJS.Timeout = setInterval(() => {
-        if(windows.length < 250) {
-          windows.push(getAWindow());
-        }
-      }, 400);
 
       const draw = (): void => {   
         CanvasUtility.drawCanvas(context);
 
-        windows = WindowUtility.filterOutDestroyed(windows);
+        windows = WindowUtility.filterOutDestroyed(windows, clickAt);
 
-        WindowUtility.drawAll(context, windows, clickAt, mouse);
+        WindowUtility.drawAll(context, imageRef.current, windows, clickAt, mouse);
 
         ReticleUtility.draw(context, mouse, clickAt);
 
@@ -71,11 +52,13 @@ export const InfiniteCanvas: React.FC = () => {
 
       draw();
 
+      generate();
+
       const handleOnMouseMove = (e: any): void => {
         mouse.x = e.clientX;
         mouse.y = e.clientY;
       }
-      
+
       const handleOnResize = (e: any): void => {
         if(windows.length > 0) {
           windows = [];
@@ -88,16 +71,14 @@ export const InfiniteCanvas: React.FC = () => {
       
       ref.current.addEventListener("mousemove", handleOnMouseMove);
 
-      ref.current.addEventListener("resize", handleOnResize);
+      window.addEventListener("resize", handleOnResize);
 
       ref.current.addEventListener("mousedown", handleOnClick);
 
       return () => {
-        clearInterval(interval);
-
         ref.current.removeEventListener("mousemove", handleOnMouseMove);
         
-        ref.current.removeEventListener("resize", handleOnResize);
+        window.removeEventListener("resize", handleOnResize);
 
         ref.current.removeEventListener("mousedown", handleOnClick);
       }
@@ -105,6 +86,8 @@ export const InfiniteCanvas: React.FC = () => {
   }, []);
 
   return (
-    <canvas ref={ref} id="infinite-canvas" />
+    <canvas ref={ref} id="infinite-canvas">
+      <img ref={imageRef} src="/img/infinite-menu-options.png" height="100" width="100" />
+    </canvas>
   );
 }

@@ -10,17 +10,19 @@ interface IReticleUtility {
 
 export const ReticleUtility: IReticleUtility = {
   draw: (context: CanvasRenderingContext2D, coordinate: ICoordinate, clickAt: number): void => {  
-    context.lineWidth = 2;
+    context.lineWidth = 3;
+    
+    context.lineCap = "round";
 
     const radius: number = 40,
       white: string = `rgba(${Color.White}, ${CanvasUtility.getAnimatedValue(0, 100, 250, clickAt) / 100})`;
 
-    for(let i = 0.05; i < 2; i += 0.5) {
+    for(let i = 0.08; i < 2; i += 0.5) {
       context.beginPath();
   
       context.strokeStyle = `rgb(${Color.Blue})`;
 
-      context.arc(coordinate.x, coordinate.y, radius, Math.PI * i, Math.PI * (0.4 + i));
+      context.arc(coordinate.x, coordinate.y, radius, Math.PI * i, Math.PI * (0.34 + i));
     
       context.stroke();  
     }
@@ -37,8 +39,8 @@ export const ReticleUtility: IReticleUtility = {
 
     context.beginPath();
 
-    const length: number = CanvasUtility.getAnimatedValue(radius * 1.5, radius * 2, 250, clickAt);
-  
+    const length: number = CanvasUtility.getAnimatedValue(radius * 1.25, radius * 1.5, 250, clickAt);
+
     context.strokeStyle = `rgb(${Color.Blue})`;
 
     context.moveTo(coordinate.x, coordinate.y - 10);

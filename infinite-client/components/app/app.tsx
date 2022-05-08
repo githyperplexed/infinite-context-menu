@@ -27,11 +27,12 @@ export const App: React.FC = () => {
     setModeToNormal = (): void => setModeTo(AppMode.Normal);
 
   const getAppContent = (): JSX.Element => {
-    if(appState.mode === AppMode.Infinite) {
+    if(appState.mode === AppMode.Infinite || true) {
       return (
         <>
           <WindowEffect level={9} duration={1000} />
           <InfiniteCanvas />
+          <ContextMenuWrapper targetRef={ref} sections={ContextMenuTestUtility.getMenuSections()} />
         </>
       )
     }

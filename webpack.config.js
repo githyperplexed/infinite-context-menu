@@ -27,7 +27,15 @@ module.exports = env => {
     plugins: [
       new HtmlPlugin({
         template: path.resolve(__dirname, "infinite-client/index.html")
-      })  
+      }),
+      new CopyPlugin({
+        patterns: [
+          {
+            from: "infinite-client/img",
+            to: "img"
+          }
+        ],
+      }) 
     ]
   };
 

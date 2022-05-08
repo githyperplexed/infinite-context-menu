@@ -20,8 +20,6 @@ export const CanvasUtility: ICanvasUtility = {
 
     context.canvas.height = height;
     context.canvas.width = width;
-
-    context.clearRect(0, 0, width, height);
   },
   getAnimationPercent: (duration: number, timestamp: number): number => {
     if(timestamp === null) return 1;
