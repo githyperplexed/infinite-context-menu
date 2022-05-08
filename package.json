@@ -1,9 +1,16 @@
 {
+  "name": "infinite-context-menu",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "author": "",
+  "license": "ISC",
   "scripts": {
     "start": "webpack serve --mode development --env local",
     "clean": "rm -rf public",
     "build": "webpack --mode production --env production",
-    "deploy": "npm run clean && npm run build && firebase deploy --only hosting"
+    "deploy": "npm run clean && npm run build && firebase deploy --only hosting",
+    "pd": "git push && npm run deploy"
   },
   "dependencies": {
     "classnames": "^2.3.1",
