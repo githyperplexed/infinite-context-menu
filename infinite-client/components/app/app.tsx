@@ -27,7 +27,7 @@ export const App: React.FC = () => {
     setModeToNormal = (): void => setModeTo(AppMode.Normal);
 
   const getAppContent = (): JSX.Element => {
-    if(appState.mode === AppMode.Infinite || true) {
+    if(appState.mode === AppMode.Infinite) {
       return (
         <>
           <WindowEffect level={9} duration={1000} />
