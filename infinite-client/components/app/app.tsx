@@ -47,6 +47,11 @@ export const App: React.FC = () => {
   return (
     <AppContext.Provider value={{ mode: appState.mode, setModeToInfinite, setModeToNormal }}>
       <div ref={ref} id="infinite-app" className={appState.mode.toLowerCase()}>        
+        <div id="infinite-app-links">
+          <a href="https://www.youtube.com/c/Hyperplexed" target="_blank"><i className="fa-brands fa-youtube" /></a>
+          <a href="https://codepen.io/Hyperplexed" target="_blank"><i className="fa-brands fa-codepen" /></a>
+          <a href="https://twitter.com/Hyperplexed" target="_blank"><i className="fa-brands fa-twitter" /></a>
+        </div>
         {getAppContent()}
       </div>
     </AppContext.Provider>

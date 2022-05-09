@@ -15,6 +15,28 @@
     }
   }
 
+  #infinite-app-links {
+    display: flex;
+    gap: 5px;
+    margin: 5px;
+    position: absolute;
+    z-index: 100;
+
+    a {
+      backdrop-filter: blur(2px);
+      background-color: rgba(white, 0.05);
+      border-radius: 6px;
+      color: white;
+      font-size: 1.25em;
+      padding: 10px;
+      text-decoration: none;
+
+      &:hover {
+        background-color: rgba(white, 0.1);
+      }
+    }
+  }
+
   #reset-mode-button {
     backdrop-filter: blur(2px);
     background-color: rgba(white, 0.03);
