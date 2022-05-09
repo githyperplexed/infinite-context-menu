@@ -76,11 +76,7 @@ export const InfiniteCanvas: React.FC = () => {
       ref.current.addEventListener("mousedown", handleOnClick);
 
       return () => {
-        ref.current.removeEventListener("mousemove", handleOnMouseMove);
-        
         window.removeEventListener("resize", handleOnResize);
-
-        ref.current.removeEventListener("mousedown", handleOnClick);
       }
     }
   }, []);

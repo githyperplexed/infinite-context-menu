@@ -52,40 +52,42 @@ export const WindowUtility: IWindowUtility = {
     return updated;
   },
   drawImage: (context: CanvasRenderingContext2D, img: HTMLImageElement, w: ICanvasContextMenuWindow, clickAt: number, mouse: ICoordinate): void => {    
-    const size: ISize = {
-      height: w.destroyedAt ? CanvasUtility.getAnimatedValue(CanvasContextMenuWindowSize.Height, CanvasContextMenuWindowSize.Height * 1.5, 100, w.destroyedAt) : CanvasContextMenuWindowSize.Height,
-      width: w.destroyedAt ? CanvasUtility.getAnimatedValue(CanvasContextMenuWindowSize.Width, CanvasContextMenuWindowSize.Width * 1.5, 100, w.destroyedAt) : CanvasContextMenuWindowSize.Width
-    }
+    if(img) {
+      const size: ISize = {
+        height: w.destroyedAt ? CanvasUtility.getAnimatedValue(CanvasContextMenuWindowSize.Height, CanvasContextMenuWindowSize.Height * 1.5, 100, w.destroyedAt) : CanvasContextMenuWindowSize.Height,
+        width: w.destroyedAt ? CanvasUtility.getAnimatedValue(CanvasContextMenuWindowSize.Width, CanvasContextMenuWindowSize.Width * 1.5, 100, w.destroyedAt) : CanvasContextMenuWindowSize.Width
+      }
 
-    w.coordinate.x = w.coordinate.x + w.speed.x;
-    w.coordinate.y = w.coordinate.y + w.speed.y;
+      w.coordinate.x = w.coordinate.x + w.speed.x;
+      w.coordinate.y = w.coordinate.y + w.speed.y;
 
-    w.speed = WindowUtility.determineSpeed(context, w.coordinate, size.height, size.width, w.speed);
+      w.speed = WindowUtility.determineSpeed(context, w.coordinate, size.height, size.width, w.speed);
 
-    const upperLeft: ICoordinate = {
-      x: w.coordinate.x - (size.width / 2), 
-      y: w.coordinate.y - (size.height / 2)
-    }
+      const upperLeft: ICoordinate = {
+        x: w.coordinate.x - (size.width / 2), 
+        y: w.coordinate.y - (size.height / 2)
+      }
 
-    context.shadowBlur = 29;
+      context.shadowBlur = 29;
 
-    context.shadowColor = "rgba(10, 10, 10, 0.5)";
+      context.shadowColor = "rgba(10, 10, 10, 0.5)";
 
-    context.shadowOffsetY = 7;
+      context.shadowOffsetY = 7;
 
-    if(w.destroyedAt) { 
-      context.fillStyle = `rgba(20, 20, 20, ${CanvasUtility.getAnimatedValue(100, 0, 100, w.destroyedAt) / 100})`;
-  
-      context.fillRect(upperLeft.x, upperLeft.y, size.width, size.height);
-    } else {
-      context.drawImage(img, upperLeft.x, upperLeft.y, size.width, size.height);
-    }
+      if(w.destroyedAt) { 
+        context.fillStyle = `rgba(20, 20, 20, ${CanvasUtility.getAnimatedValue(100, 0, 100, w.destroyedAt) / 100})`;
+    
+        context.fillRect(upperLeft.x, upperLeft.y, size.width, size.height);
+      } else {
+        context.drawImage(img, upperLeft.x, upperLeft.y, size.width, size.height);
+      }
 
-    if(WindowUtility.isClickInWindow(upperLeft, size, mouse)) {      
-      const now: number = new Date().getTime();
+      if(WindowUtility.isClickInWindow(upperLeft, size, mouse)) {      
+        const now: number = new Date().getTime();
 
-      if(now - clickAt <= 10 && w.destroyedAt === null) {
-        w.destroyedAt = now;
+        if(now - clickAt <= 10 && w.destroyedAt === null) {
+          w.destroyedAt = now;
+        }
       }
     }
   },

@@ -34,6 +34,7 @@ export const App: React.FC = () => {
           <WindowEffect level={9} duration={1000} />
           <InfiniteCanvas />
           <NoMoreOptionsText />
+          <button type="button" id="reset-mode-button" className="rubik-font" onClick={() => setModeTo(AppMode.Normal)}>Reset</button>
         </>
       )
     }
