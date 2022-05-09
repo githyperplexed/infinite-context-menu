@@ -41,7 +41,7 @@ export const ContextMenuSection: React.FC<IContextMenuProps> = (props: IContextM
   }
 
   return (
-    <div className="context-menu-section" style={{ zIndex: props.level + 1 }}>
+    <div className="context-menu-section">
       {getActions()}
     </div>
   );

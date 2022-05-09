@@ -72,7 +72,7 @@ export const ContextMenuExtension: React.FC<IContextMenuExtensionProps> = (props
   }
 
   return (
-    <div ref={ref} className="context-menu-extension" onMouseEnter={handleOnMouseOver} onMouseLeave={handleOnMouseOut}>
+    <div ref={ref} className="context-menu-extension" onMouseEnter={handleOnMouseOver} onMouseLeave={handleOnMouseOut} style={{ zIndex: active ? 2 : 1 }}>
       <ContextMenuAction 
         id={props.action.id} 
         className={props.action.className}

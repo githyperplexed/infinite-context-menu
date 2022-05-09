@@ -9,13 +9,33 @@ interface IContextMenuTestUtility {
 
 export const ContextMenuTestUtility: IContextMenuTestUtility = {
   getMenuSections: (): IContextMenuSection[] => {
-    const settingsSections: IContextMenuSection[] = [
+    const statsSectionsX: IContextMenuSection[] = [
       ContextMenuUtility.mapSection([
         ContextMenuUtility.mapAction("Photo", "fa-solid fa-camera"),
         ContextMenuUtility.mapAction("Description", "fa-solid fa-align-left")
       ]),
       ContextMenuUtility.mapSection([
         ContextMenuUtility.mapAction("Stats", "fa-solid fa-chart-line")
+      ])
+    ];
+
+    const statsSections: IContextMenuSection[] = [
+      ContextMenuUtility.mapSection([
+        ContextMenuUtility.mapAction("Photo", "fa-solid fa-camera"),
+        ContextMenuUtility.mapAction("Description", "fa-solid fa-align-left")
+      ]),
+      ContextMenuUtility.mapSection([
+        ContextMenuUtility.mapAction("Stats", "fa-solid fa-chart-line", null, null, statsSectionsX)
+      ])
+    ];
+
+    const settingsSections: IContextMenuSection[] = [
+      ContextMenuUtility.mapSection([
+        ContextMenuUtility.mapAction("Photo", "fa-solid fa-camera"),
+        ContextMenuUtility.mapAction("Description", "fa-solid fa-align-left")
+      ]),
+      ContextMenuUtility.mapSection([
+        ContextMenuUtility.mapAction("Stats", "fa-solid fa-chart-line", null, null, statsSections)
       ])
     ];
 

@@ -66,13 +66,8 @@ export const ContextMenuWindow: React.FC<IContextMenuWindowProps> = (props: ICon
 
   const position: IPosition = ContextMenuUtility.getPositionFromDirectionEntry(props.action, state.directionHistory);
 
-  const style: React.CSSProperties = {
-    ...position,
-    zIndex: props.level + 1
-  }
-
   return (
-    <div ref={ref} className={classNames("context-menu-window", `escalation-level-${getEscalationLevel()}`)} style={style}>
+    <div ref={ref} className={classNames("context-menu-window", `escalation-level-${getEscalationLevel()}`)} style={position}>
       {getSections()}    
       {getWindowEffect()}
     </div>
