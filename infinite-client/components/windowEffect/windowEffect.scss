@@ -25,3 +25,9 @@
     position: absolute;
   }
 }
+
+@media(max-width: 800px) {
+  .window-effect {
+    display: none;
+  }
+}
