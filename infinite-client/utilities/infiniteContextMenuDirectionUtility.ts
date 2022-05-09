@@ -30,8 +30,6 @@ export const InfiniteContextMenuDirectionUtility: IInfiniteContextMenuDirectionU
       const tooFarRight: boolean = extensionRect.right + windowRef.current.clientWidth > window.innerWidth - 10,
         tooFarLeft: boolean = extensionRect.left - windowRef.current.clientWidth < 10;
 
-      console.log(tooFarLeft, tooFarRight)
-      
       if (tooFarLeft && tooFarRight) {
         return Lateral.None;
       } else if(lateral === Lateral.Right && tooFarRight) {

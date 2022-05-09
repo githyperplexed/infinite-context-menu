@@ -12,8 +12,6 @@ import { IDirectionEntry } from "../../models/directionEntry";
 import { defaultContextMenuState, IContextMenuState } from "./models/contextMenuState";
 import { IPosition } from "../../models/position";
 
-import { AppMode } from "../../enums/appMode";
-
 interface IContextMenuWrapperProps {
   targetRef: React.MutableRefObject<HTMLElement>;
   sections: IContextMenuSection[];
