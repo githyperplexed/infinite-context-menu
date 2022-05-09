@@ -1,3 +1,13 @@
+@keyframes infinite-app-link {
+  from, 10% {
+    background-color: rgba(white, 0.05);
+  }
+
+  5% {    
+    background-color: rgba(white, 0.2);
+  }
+}
+
 #infinite-app {
   background-color: gray(30);
   height: 100vh;
@@ -22,6 +32,12 @@
     position: absolute;
     z-index: 100;
 
+    &:not(:hover) {    
+      a {    
+        animation: infinite-app-link 10s ease-in-out infinite;
+      }
+    }
+
     a {
       backdrop-filter: blur(2px);
       background-color: rgba(white, 0.05);
@@ -31,9 +47,18 @@
       padding: 10px;
       text-decoration: none;
 
+      &:nth-of-type(2) {
+        animation-delay: 500ms;
+      }
+      
+      &:nth-of-type(3) {
+        animation-delay: 1000ms;
+      }
+
       &:hover {
         background-color: rgba(white, 0.1);
       }
+
     }
   }
 
@@ -48,7 +73,8 @@
     left: 10px;
     padding: 10px;
     position: fixed;
-    text-transform: uppercase;    
+    text-transform: uppercase; 
+    user-select: none;   
     width: 100px;
     z-index: 100;
 

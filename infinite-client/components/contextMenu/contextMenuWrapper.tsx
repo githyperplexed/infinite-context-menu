@@ -27,9 +27,7 @@ export const ContextMenuWrapper: React.FC<IContextMenuWrapperProps> = (props: IC
   const [state, setStateTo] = React.useState<IContextMenuState>(defaultContextMenuState(true));
 
   const setActiveTo = (active: boolean): void => {
-    if(mode === AppMode.Normal) {
-      setStateTo({ ...state, active });
-    }
+    setStateTo({ ...state, active });
   }
 
   const setMenuRefTo = (menuRef: React.MutableRefObject<HTMLElement>): void => {
@@ -41,10 +39,7 @@ export const ContextMenuWrapper: React.FC<IContextMenuWrapperProps> = (props: IC
   }
 
   const updateDirectionHistory = (directionHistory: IDirectionEntry[], branchID?: string): void => {
-    const updated: IContextMenuState = { 
-      ...state,
-      directionHistory
-    };
+    const updated: IContextMenuState = { ...state, directionHistory };
 
     if(branchID || branchID === "") {
       updated.branchID = branchID;
@@ -65,9 +60,10 @@ export const ContextMenuWrapper: React.FC<IContextMenuWrapperProps> = (props: IC
     const targetIndex: number = state.directionHistory.findIndex((entry: IDirectionEntry) => entry.actionID === actionID);
 
     if(targetIndex > 0) {
-      const updatedDirectionHistory: IDirectionEntry[] = [...state.directionHistory].slice(0, targetIndex);
+      const updatedDirectionHistory: IDirectionEntry[] = [...state.directionHistory].slice(0, targetIndex),
+        branchID: string = updateDirectionHistory.length === 0 ? "" : null;
 
-      updateDirectionHistory(updatedDirectionHistory, updateDirectionHistory.length === 0 ? "" : null);
+      updateDirectionHistory(updatedDirectionHistory, branchID);
     }
   }
 
