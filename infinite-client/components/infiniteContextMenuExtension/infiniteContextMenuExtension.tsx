@@ -1,4 +1,5 @@
 import React from "react";
+import { getAnalytics, logEvent } from "firebase/analytics";
 
 import { ContextMenuExtension } from "../contextMenuExtension/contextMenuExtension";
 
@@ -25,11 +26,17 @@ export const InfiniteContextMenuExtension: React.FC<IInfiniteContextMenuExtensio
 
   const mapAction = (): IContextMenuAction => {
     if(props.level === 14) {
+      const handleDoNotPress = (): void => {
+        logEvent(getAnalytics(), "do_not_press_clicked");
+
+        setModeToInfinite();
+      }
+
       return {
         ...props.action,
         sections: [
           ContextMenuUtility.mapSection([
-            ContextMenuUtility.mapAction("DO NOT PRESS", "fa-solid fa-infinity", "do-not-press", setModeToInfinite)
+            ContextMenuUtility.mapAction("DO NOT PRESS", "fa-solid fa-infinity", "do-not-press", handleDoNotPress)
           ])
         ]
       };
