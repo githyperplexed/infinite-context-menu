@@ -18,29 +18,30 @@ interface IContextMenuExtensionProps {
 }
 
 export const ContextMenuExtension: React.FC<IContextMenuExtensionProps> = (props: IContextMenuExtensionProps) => {    
-  const { truncateDirectionHistoryAtEntry } = React.useContext(ContextMenuContext);
+  const { state, truncateDirectionHistoryAtEntry } = React.useContext(ContextMenuContext);
 
   const [active, setActiveTo] = React.useState<boolean>(false),
     [deactivate, setDeactivateTo] = React.useState<boolean>(false);
 
   const ref = React.useRef<HTMLDivElement>(null);
 
-  React.useEffect(() => {
-    if(!active) {
-      truncateDirectionHistoryAtEntry(props.action.id);
+  React.useEffect(() => {  
+    if(props.level === 0 && state.branchID !== props.action.id) {
+      setActiveTo(false);
     }
-  }, [active]);
+  }, [state.directionHistory]);
 
   React.useEffect(() => {
     if(deactivate) {
       const timeout: NodeJS.Timeout = setTimeout(() => {
+        truncateDirectionHistoryAtEntry(props.action.id);
         setActiveTo(false);
         setDeactivateTo(false);
-      }, 1000);
+      }, 500);
 
       return () => clearTimeout(timeout);
     }
-  }, [deactivate]);
+  }, [deactivate, state.directionHistory]);
 
   const handleOnMouseOver = (): void => {
     setActiveTo(true);

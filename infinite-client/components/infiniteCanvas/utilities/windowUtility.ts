@@ -7,7 +7,7 @@ import { ISize } from "../models/size";
 import { CanvasContextMenuWindowSize } from "../enums/canvasContextMenuWindowSize";
 
 interface IWindowUtility {
-  create: (context: CanvasRenderingContext2D) => ICanvasContextMenuWindow;
+  create: (context: CanvasRenderingContext2D, index: number) => ICanvasContextMenuWindow;
   determineSpeed: (context: CanvasRenderingContext2D, coordinate: ICoordinate, height: number, width: number, speed: ICoordinate) => ICoordinate;  
   drawImage: (context: CanvasRenderingContext2D, img: HTMLImageElement, w: ICanvasContextMenuWindow, clickAt: number, mouse: ICoordinate) => void;    
   drawAll: (context: CanvasRenderingContext2D, img: HTMLImageElement, windows: ICanvasContextMenuWindow[], clickAt: number, mouse: ICoordinate) => void;    
@@ -16,15 +16,15 @@ interface IWindowUtility {
 }
 
 export const WindowUtility: IWindowUtility = {
-  create: (context: CanvasRenderingContext2D): ICanvasContextMenuWindow => {    
+  create: (context: CanvasRenderingContext2D, index: number): ICanvasContextMenuWindow => {    
     const speed: ICoordinate = {
-      x: 1,
-      y: 1
+      x: index % 2 === 0 ? 1 : -1,
+      y: index % 2 === 0 ? 1 : -1
     }
 
     const origin: ICoordinate = {
       x: context.canvas.width / 2, 
-      y: CanvasContextMenuWindowSize.Height * -1
+      y: index % 2 === 0 ? CanvasContextMenuWindowSize.Height * -1 : context.canvas.height + CanvasContextMenuWindowSize.Height
     }
 
     return {
@@ -37,13 +37,13 @@ export const WindowUtility: IWindowUtility = {
   determineSpeed: (context: CanvasRenderingContext2D, coordinate: ICoordinate, height: number, width: number, speed: ICoordinate): ICoordinate => {    
     const updated: ICoordinate = { ...speed };
 
-    if(coordinate.x + (width / 2) >= context.canvas.width) {
+    if(updated.x > 0 && coordinate.x + (width / 2) >= context.canvas.width) {
       updated.x = speed.x * -1;
     } else if (updated.x < 0 && coordinate.x - (width / 2) <= 0) {
       updated.x = speed.x * -1;
     }
 
-    if(coordinate.y + (height / 2) >= context.canvas.height) {
+    if(updated.y > 0 && coordinate.y + (height / 2) >= context.canvas.height) {
       updated.y = speed.y * -1;
     } else if(updated.y < 0 && coordinate.y - (height / 2) <= 0) {
       updated.y = speed.y * -1;

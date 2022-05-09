@@ -31,15 +31,13 @@ export const ContextMenuWindow: React.FC<IContextMenuWindowProps> = (props: ICon
   React.useEffect(() => {
     if(props.extensionRef && props.action) {
       const entry: IDirectionEntry = ContextMenuDirectionUtility.determineDirection(props.action, state.directionHistory, props.extensionRef, ref);
-    
-      addDirectionHistoryEntry(entry);
+
+      addDirectionHistoryEntry(entry, props.level === 1 ? props.action.id : null);
     }
   }, []);
 
   React.useEffect(() => {
-    const timeout: NodeJS.Timeout = setTimeout(() => {
-      setEnteredTo(true);
-    }, 250);
+    const timeout: NodeJS.Timeout = setTimeout(() => setEnteredTo(true), 250);
 
     return () => clearTimeout(timeout);
   }, []);

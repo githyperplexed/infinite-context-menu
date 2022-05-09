@@ -11,6 +11,7 @@ import { IContextMenuSection } from "../../models/contextMenuSection";
 import { IDirectionEntry } from "../../models/directionEntry";
 import { defaultContextMenuState, IContextMenuState } from "./models/contextMenuState";
 import { IPosition } from "../../models/position";
+
 import { AppMode } from "../../enums/appMode";
 
 interface IContextMenuWrapperProps {
@@ -36,26 +37,37 @@ export const ContextMenuWrapper: React.FC<IContextMenuWrapperProps> = (props: IC
   }
 
   const activateMenu = (position: IPosition): void => {
-    if(mode === AppMode.Normal) {
-      setStateTo({ ...state, active: true, position });
-    } 
+    setStateTo({ ...state, active: true, position });
   }
 
-  const updateDirectionHistory = (directionHistory: IDirectionEntry[]): void => {
-    if(mode === AppMode.Normal) {
-      setStateTo({ ...state, directionHistory });
+  const updateDirectionHistory = (directionHistory: IDirectionEntry[], branchID?: string): void => {
+    const updated: IContextMenuState = { 
+      ...state,
+      directionHistory
+    };
+
+    if(branchID !== undefined && branchID !== null) {
+      updated.branchID = branchID;
     }
+
+    setStateTo(updated);
   }
 
-  const addDirectionHistoryEntry = (entry: IDirectionEntry): void => {
-    updateDirectionHistory([...state.directionHistory, entry]);
+  const addDirectionHistoryEntry = (entry: IDirectionEntry, branchID?: string): void => {
+    if(branchID) {
+      updateDirectionHistory([entry], branchID);
+    } else {
+      updateDirectionHistory([...state.directionHistory, entry]);
+    }
   }
 
   const truncateDirectionHistoryAtEntry = (actionID: string): void => {
     const targetIndex: number = state.directionHistory.findIndex((entry: IDirectionEntry) => entry.actionID === actionID);
 
     if(targetIndex >= 0) {
-      updateDirectionHistory([...state.directionHistory].slice(0, targetIndex));
+      const updatedDirectionHistory: IDirectionEntry[] = [...state.directionHistory].slice(0, targetIndex);
+
+      updateDirectionHistory(updatedDirectionHistory, updateDirectionHistory.length === 0 ? "" : null);
     }
   }
 

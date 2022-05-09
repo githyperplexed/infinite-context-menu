@@ -22,7 +22,7 @@ export const ContextMenuSection: React.FC<IContextMenuProps> = (props: IContextM
         );
       } else if(action.sections) {
         return (
-          <ContextMenuExtension key={action.id} action={action} level={props.level + 1} />
+          <ContextMenuExtension key={action.id} action={action} level={props.level} />
         )
       }
 

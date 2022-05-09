@@ -25,12 +25,13 @@ export const InfiniteCanvas: React.FC = () => {
         y: context.canvas.height / 2
       }
 
-      let windows: ICanvasContextMenuWindow[] = [WindowUtility.create(context)];
-
+      let index: number = 0,
+        windows: ICanvasContextMenuWindow[] = [WindowUtility.create(context, index++)];
+        
       const generate = (): void => {
         setTimeout(() => {
           if(windows.length < 100) {
-            windows.push(WindowUtility.create(context));
+            windows.push(WindowUtility.create(context, index++));
           }
   
           window.requestAnimationFrame(generate); 

@@ -1,6 +1,7 @@
 import React from "react";
 
 import { InfiniteCanvas } from "../infiniteCanvas/infiniteCanvas";
+import { NoMoreOptionsText } from "../noMoreOptionsText/noMoreOptionsText";
 import { WindowEffect } from "../windowEffect/windowEffect";
 
 import { ContextMenuWrapper } from "../contextMenu/contextMenuWrapper";
@@ -32,6 +33,7 @@ export const App: React.FC = () => {
         <>
           <WindowEffect level={9} duration={1000} />
           <InfiniteCanvas />
+          <NoMoreOptionsText />
         </>
       )
     }

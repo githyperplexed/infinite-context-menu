@@ -7,6 +7,6 @@ export interface IContextMenuContext {
   setActiveTo: (active: boolean) => void;
   setMenuRefTo: (menuRef: React.MutableRefObject<HTMLElement>) => void;
   activateMenu: (position: IPosition) => void;
-  addDirectionHistoryEntry: (entry: IDirectionEntry) => void;
+  addDirectionHistoryEntry: (entry: IDirectionEntry, branchID: string) => void;
   truncateDirectionHistoryAtEntry: (actionID: string) => void;
 }

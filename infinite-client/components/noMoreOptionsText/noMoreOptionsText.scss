@@ -1,0 +1,27 @@
+@keyframes no-more-options-text {
+  from, 50% {
+    opacity: 0;
+  }
+
+  25% {
+    opacity: 1;
+  }
+}
+
+#no-more-options-text {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+  text-align: center;
+  width: 100vw;
+
+  span {
+    animation: no-more-options-text 8s ease-in-out infinite;
+    color: rgba(white, 0.15);
+    display: block;
+    font-size: 6vw;
+    opacity: 0;
+  }
+}

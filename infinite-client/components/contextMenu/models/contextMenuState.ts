@@ -6,6 +6,7 @@ import { IPosition } from "../../../models/position";
 
 export interface IContextMenuState {
   active: boolean;
+  branchID: string;
   position: IPosition;
   sections: IContextMenuSection[];
   directionHistory: IDirectionEntry[];
@@ -15,6 +16,7 @@ export interface IContextMenuState {
 
 export const defaultContextMenuState = (active?: boolean): IContextMenuState => ({
   active: active || false,  
+  branchID: "",
   position: {
     left: 100,
     top: 100
