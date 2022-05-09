@@ -1,4 +1,5 @@
 export enum Lateral {
   Left = "Left",
-  Right = "Right"
+  Right = "Right",
+  None = ""
 }

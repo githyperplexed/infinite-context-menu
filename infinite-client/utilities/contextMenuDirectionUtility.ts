@@ -34,8 +34,15 @@ export const ContextMenuDirectionUtility: IContextMenuDirectionUtility = {
     ) {
       const extensionRect: DOMRect = extensionRef.current.getBoundingClientRect();
 
-      if(extensionRect.right + windowRef.current.clientWidth > window.innerWidth - 10) {
+      const tooFarRight: boolean = extensionRect.right + windowRef.current.clientWidth > window.innerWidth - 10,
+        tooFarLeft: boolean = extensionRect.left - windowRef.current.clientWidth < 10
+
+      if(tooFarRight && tooFarLeft) {
+        entry.lateral = Lateral.None;
+      } else if(tooFarRight) {
         entry.lateral = Lateral.Left;
+      } else if(tooFarLeft) {
+        entry.lateral = Lateral.Right;
       }
 
       if(extensionRect.top + windowRef.current.clientHeight - 10 > window.innerHeight - 10) {

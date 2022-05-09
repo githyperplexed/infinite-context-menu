@@ -26,16 +26,26 @@ export const ContextMenuUtility: IContextMenuUtility = {
     const position: IPosition = {};
 
     if(entry) {
-      if(entry.lateral === Lateral.Right) {
-        position.left = "100%";
-      } else {
-        position.right = "100%";
-      }
+      if(entry.lateral === Lateral.None) {
+        position.left = "-10px";
 
-      if(entry.vertical === Vertical.Down) {
-        position.top = "-10px";
+        if(entry.vertical === Vertical.Down) {
+          position.top = "100%";
+        } else {
+          position.bottom = "100%";
+        }
       } else {
-        position.bottom = "-10px";
+        if(entry.lateral === Lateral.Right) {
+          position.left = "100%";
+        } else if(entry.lateral === Lateral.Left) {
+          position.right = "100%";
+        }
+
+        if(entry.vertical === Vertical.Down) {
+          position.top = "-10px";
+        } else {
+          position.bottom = "-10px";
+        }
       }
     }
 

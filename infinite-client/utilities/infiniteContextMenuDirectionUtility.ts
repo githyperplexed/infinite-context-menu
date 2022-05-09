@@ -27,9 +27,16 @@ export const InfiniteContextMenuDirectionUtility: IInfiniteContextMenuDirectionU
     ) {
       const extensionRect: DOMRect = extensionRef.current.getBoundingClientRect();
 
-      if(lateral === Lateral.Right && extensionRect.right + windowRef.current.clientWidth > window.innerWidth - 10) {
+      const tooFarRight: boolean = extensionRect.right + windowRef.current.clientWidth > window.innerWidth - 10,
+        tooFarLeft: boolean = extensionRect.left - windowRef.current.clientWidth < 10;
+
+      console.log(tooFarLeft, tooFarRight)
+      
+      if (tooFarLeft && tooFarRight) {
+        return Lateral.None;
+      } else if(lateral === Lateral.Right && tooFarRight) {
         return Lateral.Left;
-      } else if(lateral === Lateral.Left && extensionRect.left - windowRef.current.clientWidth < 10) {
+      } else if(lateral === Lateral.Left && tooFarLeft) {
         return Lateral.Right;
       }
     }

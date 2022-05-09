@@ -1,8 +1,9 @@
 .context-menu-extension {
   position: relative;
 
-  .context-menu-window {
+  > .context-menu-window {
     position: absolute;
+    z-index: 2;
   }
 
   i.fa-solid.fa-caret-right {
