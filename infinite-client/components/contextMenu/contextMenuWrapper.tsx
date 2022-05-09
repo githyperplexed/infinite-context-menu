@@ -46,7 +46,7 @@ export const ContextMenuWrapper: React.FC<IContextMenuWrapperProps> = (props: IC
       directionHistory
     };
 
-    if(branchID !== undefined && branchID !== null) {
+    if(branchID || branchID === "") {
       updated.branchID = branchID;
     }
 
@@ -64,7 +64,7 @@ export const ContextMenuWrapper: React.FC<IContextMenuWrapperProps> = (props: IC
   const truncateDirectionHistoryAtEntry = (actionID: string): void => {
     const targetIndex: number = state.directionHistory.findIndex((entry: IDirectionEntry) => entry.actionID === actionID);
 
-    if(targetIndex >= 0) {
+    if(targetIndex > 0) {
       const updatedDirectionHistory: IDirectionEntry[] = [...state.directionHistory].slice(0, targetIndex);
 
       updateDirectionHistory(updatedDirectionHistory, updateDirectionHistory.length === 0 ? "" : null);

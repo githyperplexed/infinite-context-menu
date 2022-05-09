@@ -37,11 +37,11 @@ export const ContextMenuExtension: React.FC<IContextMenuExtensionProps> = (props
         truncateDirectionHistoryAtEntry(props.action.id);
         setActiveTo(false);
         setDeactivateTo(false);
-      }, 500);
+      }, 800);
 
       return () => clearTimeout(timeout);
     }
-  }, [deactivate, state.directionHistory]);
+  }, [deactivate]);
 
   const handleOnMouseOver = (): void => {
     setActiveTo(true);
