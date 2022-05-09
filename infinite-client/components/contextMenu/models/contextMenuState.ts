@@ -18,8 +18,8 @@ export const defaultContextMenuState = (active?: boolean): IContextMenuState => 
   active: active || false,  
   branchID: "",
   position: {
-    left: 100,
-    top: 100
+    left: (window.innerWidth / 2) - 150,
+    top: (window.innerHeight / 2) - 170
   },
   sections: [],
   directionHistory: [],
